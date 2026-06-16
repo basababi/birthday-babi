@@ -164,11 +164,9 @@ document.addEventListener('keydown', e => {
 // 5. INIT on DOMContentLoaded
 // ══════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
-  // Attach polaroid click → lightbox
-  document.querySelectorAll('.polaroid').forEach((card, i) => {
-    const img = card.querySelector('img');
-    lbImages.push(img.src);
-    card.addEventListener('click', () => openLightbox(i));
+  // Attach images from scrapbook cards → lightbox array
+  document.querySelectorAll('.sc-card img, .sc-photo-double img').forEach((img) => {
+    if (!lbImages.includes(img.src)) lbImages.push(img.src);
   });
 
   // Scroll reveal

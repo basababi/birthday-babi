@@ -523,53 +523,330 @@ body {
   color: var(--clr-petal);
 }
 
-.polaroid-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  max-width: 1100px;
+
+/* ── Scrapbook layout ──────────────────── */
+.scrapbook {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.polaroid {
-  background: #faf5ee;
-  border-radius: 4px;
-  padding: 14px 14px 52px;
-  width: 220px;
-  box-shadow: 0 10px 40px rgba(0,0,0,.6), 0 2px 8px rgba(0,0,0,.4);
-  transform: rotate(var(--r, 0deg));
-  transition: var(--transition);
-  cursor: pointer;
-  animation: fadeUp .7s var(--delay, 0s) both;
-}
-.polaroid:hover {
-  transform: rotate(0deg) translateY(-12px) scale(1.05);
-  box-shadow: 0 24px 60px rgba(0,0,0,.8), 0 0 30px rgba(212,169,106,.3);
-  z-index: 10;
-}
-.polaroid-img-wrap {
-  width: 100%;
-  aspect-ratio: 4/5;
+/* Base card */
+.sc-card {
+  border-radius: 12px;
   overflow: hidden;
-  background: #e0d5c5;
+  cursor: pointer;
+  transition: transform .35s ease, box-shadow .35s ease;
+  animation: fadeUp .7s both;
 }
-.polaroid-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .4s ease;
+.sc-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 24px 60px rgba(0,0,0,.7);
 }
-.polaroid:hover .polaroid-img-wrap img { transform: scale(1.08); }
-.polaroid-caption {
+
+/* ── CARD 1: Snoopy Birthday ───────────── */
+.sc-birthday { grid-column: span 1; }
+.sc-birthday-bg {
+  background: #5c0a15;
+  padding: 1.5rem 1.2rem 3rem;
+  position: relative;
+  min-height: 480px;
+  overflow: hidden;
+}
+/* Doodle icons scattered in bg */
+.sc-doodles {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  opacity: .18;
+  font-size: 2rem;
+  padding: .5rem;
+  pointer-events: none;
+}
+.sc-doodles span { display: flex; align-items: center; justify-content: center; }
+
+.sc-hb-label {
+  background: #f5e6c8;
+  border-radius: 8px;
+  padding: .6rem 1rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  position: relative; z-index: 2;
+  box-shadow: 3px 3px 12px rgba(0,0,0,.4);
+}
+.sc-hb-happy {
+  font-family: var(--ff-script);
+  font-size: 1.1rem;
+  color: #7a3a00;
+  line-height: 1;
+}
+.sc-hb-bday {
+  font-family: var(--ff-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #5c1a00;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+.sc-hb-to {
+  font-family: var(--ff-display);
+  font-size: .9rem;
+  color: #7a3a00;
+  font-style: italic;
+}
+
+.sc-photo-frame {
+  background: #f0e4c8;
+  padding: 10px 10px 40px;
+  margin: 0 auto;
+  width: 85%;
+  box-shadow: 0 6px 24px rgba(0,0,0,.5);
+  border: 1px solid #d4b896;
+  position: relative; z-index: 2;
+}
+.sc-photo-frame img {
+  width: 100%; aspect-ratio: 1;
+  object-fit: cover; display: block;
+}
+.sc-frame-cap {
   text-align: center;
-  font-family: 'Dancing Script', cursive;
-  font-size: 1rem;
-  color: #5a3a2a;
-  margin-top: 10px;
-  line-height: 1.3;
+  font-family: var(--ff-display);
+  font-size: .75rem;
+  letter-spacing: 2px;
+  color: #5c1a00;
+  margin-top: 8px;
 }
+
+.sc-snoopy {
+  position: absolute;
+  bottom: 8px; left: 12px;
+  font-size: 2.2rem;
+  z-index: 3;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,.5));
+}
+.sc-envelope {
+  position: absolute;
+  bottom: 14px; right: 14px;
+  font-size: 1.8rem;
+  z-index: 3;
+}
+
+/* ── CARD 2: Sunshine newspaper ───────── */
+.sc-sunshine {
+  background: #6b0a14;
+  padding: 0;
+  display: flex; flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.sc-torn-top {
+  background: #f5f0e8;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.25rem;
+  color: #2a1a0a;
+  padding: .6rem 1rem .5rem;
+  clip-path: polygon(0 0,100% 0,100% 80%,95% 100%,88% 85%,80% 100%,72% 82%,64% 100%,56% 84%,48% 100%,40% 83%,32% 100%,24% 85%,16% 100%,8% 83%,0 100%);
+  z-index: 2; position: relative;
+}
+.sc-torn-top em { font-style: italic; color: #5c0a14; }
+
+.sc-news-strip {
+  background: #e8e0d0;
+  font-size: .72rem;
+  color: #2a1a0a;
+  line-height: 1.55;
+  padding: .6rem .8rem;
+  font-family: Georgia, serif;
+  letter-spacing: .2px;
+  position: relative; z-index: 2;
+  transform: rotate(-.5deg);
+  margin: 4px 6px;
+  box-shadow: 1px 2px 8px rgba(0,0,0,.3);
+}
+.sc-news-bot { transform: rotate(.4deg); }
+
+.sc-photo-clip {
+  margin: 6px auto;
+  width: 90%;
+  background: #111;
+  border: 8px solid #f5f0e8;
+  box-shadow: 3px 3px 16px rgba(0,0,0,.6), -2px -2px 8px rgba(0,0,0,.3);
+  transform: rotate(-1deg);
+  position: relative; z-index: 3;
+}
+.sc-photo-clip img {
+  width: 100%; aspect-ratio: 4/3;
+  object-fit: cover; display: block;
+}
+
+.sc-stars {
+  position: absolute;
+  top: 42%; right: 10px;
+  font-size: 1.6rem;
+  color: #8b0000;
+  z-index: 4;
+  line-height: 1.2;
+  text-shadow: 1px 1px 4px rgba(0,0,0,.6);
+}
+.sc-kitty {
+  position: absolute;
+  bottom: 10px; right: 8px;
+  font-size: 1.6rem;
+  z-index: 4;
+}
+
+/* ── CARD 3: Forever scrapbook ─────────── */
+.sc-forever { grid-column: span 1; }
+.sc-forever-bg {
+  background: #6b0a14;
+  padding: 1rem;
+  min-height: 520px;
+  position: relative;
+  overflow: hidden;
+}
+.sc-pin {
+  position: absolute; top: 8px; left: 10px;
+  font-size: 1.6rem; z-index: 5;
+  transform: rotate(-20deg);
+}
+.sc-ribbon {
+  position: absolute; top: 8px; right: 10px;
+  font-size: 1.8rem; z-index: 5;
+}
+.sc-check-strip {
+  position: absolute; left: 0; top: 30px;
+  width: 32px; height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    #8b0000 0px, #8b0000 6px,
+    #f5e6c8 6px, #f5e6c8 12px
+  );
+  opacity: .6;
+}
+.sc-cream-frame {
+  background: #f0e4c8;
+  border-radius: 4px;
+  padding: 12px 10px;
+  margin-left: 30px;
+  box-shadow: 4px 4px 20px rgba(0,0,0,.5);
+  position: relative; z-index: 2;
+}
+.sc-photo-double {
+  width: 100%;
+  margin-bottom: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #d4b896;
+}
+.sc-photo-double img {
+  width: 100%; aspect-ratio: 16/9;
+  object-fit: cover; display: block;
+  transition: transform .3s ease;
+}
+.sc-photo-double:hover img { transform: scale(1.04); }
+
+.sc-stickers-row {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px 6px;
+}
+.sc-lips { font-size: 1.3rem; }
+.sc-star-group { color: #8b0000; font-size: 1rem; letter-spacing: 2px; }
+.sc-heart-print { font-size: 1.4rem; text-align: right; padding-right: 4px; }
+
+.sc-forever-caption {
+  background: #e8dcc8;
+  font-family: var(--ff-display);
+  font-size: .85rem;
+  color: #3a1a00;
+  text-align: center;
+  padding: 6px 8px;
+  font-style: italic;
+  border-top: 1px solid #c8b090;
+  line-height: 1.4;
+}
+.sc-flower {
+  position: absolute; bottom: 6px; left: 4px;
+  font-size: 2rem; z-index: 3;
+}
+.sc-love-script {
+  position: absolute; bottom: 6px; right: 4px;
+  font-family: var(--ff-script);
+  font-size: .6rem; color: #f5e6c8;
+  opacity: .5; writing-mode: vertical-rl;
+  letter-spacing: 1px;
+}
+
+/* ── CARD 4: Vintage lace ──────────────── */
+.sc-lace { grid-column: span 1; }
+.sc-lace-bg {
+  background: #6b0a14;
+  min-height: 460px;
+  padding: 1.5rem 1.2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.sc-lace-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -30deg,
+    transparent 0px, transparent 18px,
+    rgba(245,230,200,.04) 18px, rgba(245,230,200,.04) 19px
+  );
+  pointer-events: none;
+}
+.sc-clock {
+  position: absolute; top: 10px; left: 12px;
+  font-size: 1.4rem; z-index: 3;
+}
+.sc-lace-frame {
+  background: #f0e4c8;
+  border: 8px solid #f0e4c8;
+  outline: 3px dashed #c8a870;
+  outline-offset: -6px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.6);
+  margin: 2.5rem auto 0;
+  width: 85%;
+  position: relative; z-index: 2;
+  border-radius: 4px;
+}
+.sc-lace-frame img {
+  width: 100%; aspect-ratio: 3/4;
+  object-fit: cover; display: block;
+}
+.sc-rose-bunch {
+  position: absolute; top: 6px; right: 8px;
+  font-size: 1.8rem; z-index: 3;
+  text-shadow: 2px 2px 6px rgba(0,0,0,.5);
+}
+.sc-bow {
+  position: absolute; top: 50%; right: -6px;
+  font-size: 1.8rem; z-index: 3;
+  transform: translateY(-50%);
+}
+.sc-vinyl {
+  position: absolute; bottom: 10px; right: 12px;
+  font-size: 1.6rem; z-index: 3; opacity: .8;
+}
+.sc-lace-cap {
+  text-align: center;
+  font-family: var(--ff-script);
+  font-size: 1.1rem;
+  color: #f5e6c8;
+  margin-top: 1rem;
+  position: relative; z-index: 2;
+  text-shadow: 1px 1px 6px rgba(0,0,0,.6);
+}
+
+
 
 /* ===================================================
    LIGHTBOX
