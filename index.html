@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Төрсөн өдрийн мэнд 🎂 – Babi-гийн Гүнжид</title>
-  <meta name="description" content="18 насны төрсөн өдрийн мэнд хүргэе миний сайхан гүнж. Чамайгаа зөндөө их хайртай." />
+  <title>Төрсөн өдрийн мэнд Анхзаяа🎂 – Babi-гийн Гүнжид</title>
+  <meta name="description" content="18 насны төрсөн өдрийн мэнд хүргэе миний сайхан гүнж." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
@@ -12,11 +12,17 @@
 </head>
 <body>
 
+<!-- ===== PAGE TRANSITION ===== -->
+<div class="page-transition" id="pageTransition">
+  <div class="pt-panel"></div>
+</div>
+
 <!-- ===== TAP TO ENTER OVERLAY ===== -->
 <div class="enter-overlay" id="enterOverlay">
   <div class="enter-box">
-    <div class="enter-hearts">💕</div>
-    <h2 class="enter-title">Миний Гүнжид</h2>
+    <span class="enter-hearts">💕</span>
+    <h2 class="enter-title">Миний Гүнж</h2>
+    <div class="enter-divider"></div>
     <p class="enter-sub">Нээж үзэхэд бэлэн үү?</p>
     <button class="enter-btn" id="enterBtn" onclick="enterSite()">✨ Нээх ✨</button>
     <p class="enter-note">♪ Demons – Imagine Dragons</p>
@@ -27,8 +33,8 @@
 <div class="petals-container" id="petals"></div>
 
 <!-- ===== MUSIC PLAYER ===== -->
-<div class="music-bar" id="musicBar">
-  <div class="music-icon" id="musicToggle" onclick="toggleMusic()" title="Дуу тоглуулах / зогсоох">
+<div class="music-bar" id="musicBar" onclick="toggleMusic()">
+  <div class="music-icon" id="musicToggle" title="Дуу тоглуулах / зогсоох">
     <div class="vinyl-disc" id="vinylDisc">
       <div class="vinyl-center"></div>
     </div>
@@ -47,37 +53,45 @@
 
 <!-- ===== HERO SECTION ===== -->
 <section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-pre">✦ June 17, 2026 ✦</p>
+    <p class="hero-pre">June 17, 2026</p>
     <h1 class="hero-title">
       <span class="hero-happy">Happy</span>
       <span class="hero-birthday">Birthday</span>
+      <span class="hero-birthday">Анхзаяа-д🎂</span>
     </h1>
     <p class="hero-sub">Миний сайхан <em>Гүнж</em></p>
     <div class="hero-age">
       <span>1</span><span>8</span>
     </div>
     <p class="hero-tagline">Одоо бацаан биш боллоо шүүдээ 🎉</p>
-    <a href="#letter" class="hero-btn">Захиаг унших ↓</a>
+    <a href="#letter" class="hero-btn"><span>Захиаг унших ↓</span></a>
   </div>
   <div class="scroll-indicator">
+    <div class="scroll-line"></div>
     <div class="scroll-dot"></div>
   </div>
 </section>
+
+<!-- DIVIDER -->
+<div class="section-divider"><span class="div-icon">✦ 💕 ✦</span></div>
 
 <!-- ===== COUNTDOWN ===== -->
 <section class="countdown-section" id="countdown-section">
   <div class="countdown-wrap">
     <p class="countdown-label">🎂 Төрсөн өдөр хүртэл</p>
     <div class="countdown-boxes" id="countdownBoxes">
-      <div class="c-box"><span id="c-days">00</span><small>Өдөр</small></div>
+      <div class="c-box" id="cb-d"><span id="c-days">00</span><small>Өдөр</small></div>
       <div class="c-sep">:</div>
-      <div class="c-box"><span id="c-hours">00</span><small>Цаг</small></div>
+      <div class="c-box" id="cb-h"><span id="c-hours">00</span><small>Цаг</small></div>
       <div class="c-sep">:</div>
-      <div class="c-box"><span id="c-mins">00</span><small>Минут</small></div>
+      <div class="c-box" id="cb-m"><span id="c-mins">00</span><small>Минут</small></div>
       <div class="c-sep">:</div>
-      <div class="c-box"><span id="c-secs">00</span><small>Секунд</small></div>
+      <div class="c-box" id="cb-s"><span id="c-secs">00</span><small>Секунд</small></div>
     </div>
     <div class="birthday-message" id="birthdayMessage" style="display:none;">
       🎉 Өнөөдөр чиний төрсөн өдөр! Баярлалаа дэлхий рүү ирсэнд! 🎉
@@ -85,41 +99,52 @@
   </div>
 </section>
 
+<!-- DIVIDER -->
+<div class="section-divider"><span class="div-icon">✦ 💌 ✦</span></div>
+
 <!-- ===== LETTER SECTION ===== -->
 <section class="letter-section" id="letter">
   <div class="letter-container">
-    <div class="letter-deco top-deco">❝</div>
-    <div class="letter-header">
-      <span class="letter-from">Babi-гаас</span>
-      <span class="letter-to">Миний Гүнжид</span>
+    <div class="letter-paper-bg2"></div>
+    <div class="letter-paper-bg"></div>
+    <div class="letter-inner">
+      <div class="letter-seal">💌</div>
+      <div class="letter-deco top-deco">❝</div>
+      <div class="letter-header">
+        <span class="letter-from">Babi-гаас</span>
+        <span class="letter-to">Миний Гүнжид</span>
+      </div>
+      <div class="letter-body">
+        <p>Сайн байна уу хайрт минь чамдаа энэ сайхан мөчийн мэндийг хүргэе. Чи минь одоо том анай болж 18н насны босгийг алхлаа шүүдэ — одоо бацаан биш боллоо шүүдээ!</p>
+        <p>Ийм хөөрхөн сайхан хайрын минь төрүүлж өсөгсөн аав ээжид нь баярлаад ханашгүй шүүдээ.</p>
+        <p>Чи бол миний амьдрал туссан нар шүү. Бүх зүйл хэцүү байсан ч чамтайлгаал байвал хорвоо дэлхий илүү сайхан.</p>
+        <p>Бид 2 ийг маш олон сайхан жилүүд хүлээж байгаа шүү миний гүнж. Тэр болтол унаж босож маргалдах, санах гээд зөндөө саад байгаа ч хамтдаа байгаа цагт бүх юм болно.</p>
+        <p>Миний сайхан хайр хичээл номоо сайн хийгээд ЭЕШ ээ сайхан өгөөд хүссэн сургууль хүссэн мэрэгжлээ сонгоод амьдарлых нь өөр нэг сайхан хуудас эхэлнэ.</p>
+        <p>Би ямар ч үед чамайгаа харайлсаар байх болно. Алдсан оносон ч дуртай зүйлийхээ төлөө хичээж аз жаргалтай амьдраарай. Чамайгаа жаргалтай байхийг харах, инээж байгааг харах — сайхан жүүдээ.</p>
+        <p>2 уулаа нэгэл сайхан нартай өдөр хорвоо дэлхийгээр аялж хамдаа эрхлэлдээд явж байна. Ийм сайхан хайртай учирч энэ сайхан хувь тавьланд төрсөн би ч азтай шүү. Хайрыхаа гараас атгаад хамтдаа мөрөөдөлдөө хүрээд аз жаргалтай амьдарнаа. 💕</p>
+        <p>Чамайгаа зөндөө их санаж байгаа шүү. Удахгүй уулзаад хамтдаа зөндөө эрхлэлднээ жааюуу — ингээд хайрт чамдаа төрсөн өдрийн мэнд хүргий, хайрт Babi гаас нь. 💕</p>
+      </div>
+      <div class="letter-footer">
+        <p class="letter-sign">Хайртай чамдаа 💌</p>
+        <p class="letter-from-name">— Babi-гаас нь</p>
+      </div>
+      <div class="letter-deco bottom-deco">❞</div>
     </div>
-    <div class="letter-body">
-      <p>Сайн байна уу хайрт минь чамдаа энэ сайхан мөчийн мэндийг хүргэе.Чи минь том анай болж 18н насны босгийг алхлаа шүүдэ одоо бацаан биш боллоо шүүдээ вууаadadаа.</p>
-      <p>Ийм хоорхон сайхан хайрын минь төрүүлж өсөгсөн аав ээжид нь баярлаад ханашгүй шүүдээ.</p>
-      <p>Чи бол миний амьдрал туссан нар бүх зүйл хэцүү байсан ч чамтайлгаал байвал хорвоо дэлхий илүү сайхан.</p>
-      <p>Бид 2 ийг маш олон сайхан жилүүд хүлээж байгаа шүү миний гүнж. Тэр болтол унаж босож маргалдаан санах гээд зөндөө саад байгаа ч хамтдаа байгаа цагт бүх юм болно.</p>
-      <p>Миний сайхан хайр хичээл номоо сайн хийгээд ЭЕШ ээ сайхан өгөөд хүссэн сургууль хүссэн мэрэгжлээ сонгоод амьдарлых нь өөр нэг сайхан хуудас эхэлнэ.</p>
-      <p>Би ямар ч үед чамайг харайлсаар байх болно миний сайхан гүнж алдсан оносон дуртай зүйлийхээ төлөө хичээж аз жаргалтай амьдраарай.</p>
-      <p>Чамайгаа зөндөө их санаж байгаа шүү удахгүй уулзаад хамтдаа зөндөө эрхлэлднээ ингээд хайрт чамдаа төрсөн өдрийн мэнд хүргий хайрт Babi гаас нь 💕</p>
-    </div>
-    <div class="letter-footer">
-      <p class="letter-sign">Хайртай чамдаа 💌</p>
-      <p class="letter-from-name">— Babi-гаас нь</p>
-    </div>
-    <div class="letter-deco bottom-deco">❞</div>
   </div>
 </section>
+
+<!-- DIVIDER -->
+<div class="section-divider"><span class="div-icon">✦ 📷 ✦</span></div>
 
 <!-- ===== GALLERY SECTION ===== -->
 <section class="gallery-section" id="gallery">
   <div class="section-header">
-    <h2 class="section-title">Бидний мөчүүд</h2>
-    <p class="section-sub">Дурсамжийн цомог 📷</p>
+    <h2 class="section-title">Loff youuu</h2>
+    <p class="section-sub">Hot girl 📷</p>
   </div>
 
   <div class="scrapbook">
-
-    <!-- CARD 1 — Snoopy birthday style -->
+    <!-- CARD 1 — Snoopy birthday -->
     <div class="sc-card sc-birthday" onclick="openLightbox(0)">
       <div class="sc-birthday-bg">
         <div class="sc-doodles">
@@ -140,7 +165,7 @@
       </div>
     </div>
 
-    <!-- CARD 2 — "You are my sunshine" newspaper style -->
+    <!-- CARD 2 — Sunshine newspaper -->
     <div class="sc-card sc-sunshine" onclick="openLightbox(1)">
       <div class="sc-torn-top">You are my <em>Sunshine</em></div>
       <div class="sc-news-strip">love love love love love love love love loved love love love love love love love love? Love love love love love love. darling, you are all i ever wanted love to be. love love love. I love</div>
@@ -152,7 +177,7 @@
       <div class="sc-kitty">🐱🍓</div>
     </div>
 
-    <!-- CARD 3 — "I love you forever" scrapbook (2 photos) -->
+    <!-- CARD 3 — I love you forever (2 photos) -->
     <div class="sc-card sc-forever">
       <div class="sc-forever-bg">
         <div class="sc-pin">📌</div>
@@ -177,7 +202,7 @@
       </div>
     </div>
 
-    <!-- CARD 4 — Vintage lace style -->
+    <!-- CARD 4 — Vintage lace -->
     <div class="sc-card sc-lace" onclick="openLightbox(4)">
       <div class="sc-lace-bg">
         <div class="sc-clock">🕰️</div>
@@ -190,7 +215,6 @@
         <p class="sc-lace-cap">Миний гүнж 💕</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -202,26 +226,29 @@
   <button class="lb-next" onclick="event.stopPropagation(); lbNav(1)">›</button>
 </div>
 
+<!-- DIVIDER -->
+<div class="section-divider"><span class="div-icon">✦ 🌸 ✦</span></div>
+
 <!-- ===== WISHES SECTION ===== -->
 <section class="wishes-section" id="wishes">
   <div class="wishes-inner">
     <div class="wish-card" style="--cd: 0s">
-      <div class="wish-icon">🌸</div>
+      <span class="wish-icon">🌸</span>
       <h3>Аз жаргал</h3>
       <p>Амьдралын бүх замд аз жаргал дагалдаг байх болтугай</p>
     </div>
-    <div class="wish-card" style="--cd: 0.15s">
-      <div class="wish-icon">⭐</div>
+    <div class="wish-card" style="--cd: 0.2s">
+      <span class="wish-icon">⭐</span>
       <h3>Амжилт</h3>
       <p>ЭЕШ-ээ сайхан өгөөд хүссэн сургуульдаа орох болтугай</p>
     </div>
-    <div class="wish-card" style="--cd: 0.3s">
-      <div class="wish-icon">💕</div>
+    <div class="wish-card" style="--cd: 0.4s">
+      <span class="wish-icon">💕</span>
       <h3>Хайр</h3>
       <p>Манай хайр дурлал улам гүнзгийрч үргэлжлэх болтугай</p>
     </div>
-    <div class="wish-card" style="--cd: 0.45s">
-      <div class="wish-icon">🌙</div>
+    <div class="wish-card" style="--cd: 0.6s">
+      <span class="wish-icon">🌙</span>
       <h3>Эрүүл мэнд</h3>
       <p>Эрүүл чийрэг сайхан байж цэцэглэн хөгжих болтугай</p>
     </div>
@@ -230,9 +257,7 @@
 
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
-  <div class="footer-hearts">
-    <span>💕</span><span>🎂</span><span>💕</span>
-  </div>
+  <div class="footer-hearts">💕 🎂 💕</div>
   <p class="footer-text">Хайртай чамдаа — Babi 💌</p>
   <p class="footer-date">June 17, 2026 · 18th Birthday</p>
 </footer>
