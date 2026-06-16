@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Төрсөн өдрийн мэнд 🎂 – Babi-гийн Гүнжид</title>
+  <meta name="description" content="18 насны төрсөн өдрийн мэнд хүргэе миний сайхан гүнж. Чамайгаа зөндөө их хайртай." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== FLOATING PETALS ===== -->
+<div class="petals-container" id="petals"></div>
+
+<!-- ===== MUSIC PLAYER ===== -->
+<div class="music-bar" id="musicBar">
+  <div class="music-icon" id="musicToggle" onclick="toggleMusic()" title="Дуу тоглуулах / зогсоох">
+    <div class="vinyl-disc" id="vinylDisc">
+      <div class="vinyl-center"></div>
+    </div>
+  </div>
+  <div class="music-info">
+    <span class="music-title">Demons – Imagine Dragons</span>
+    <span class="music-sub">♪ Чиний дуу</span>
+  </div>
+  <div class="music-wave" id="musicWave">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</div>
+<audio id="bgMusic" loop>
+  <source src="Imagine Dragons - Demons (Official Music Video).mp3" type="audio/mpeg" />
+</audio>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero" id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-pre">✦ June 17, 2026 ✦</p>
+    <h1 class="hero-title">
+      <span class="hero-happy">Happy</span>
+      <span class="hero-birthday">Birthday</span>
+    </h1>
+    <p class="hero-sub">Миний сайхан <em>Гүнж</em></p>
+    <div class="hero-age">
+      <span>1</span><span>8</span>
+    </div>
+    <p class="hero-tagline">Одоо бацаан биш боллоо шүүдээ 🎉</p>
+    <a href="#letter" class="hero-btn">Захиаг унших ↓</a>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- ===== COUNTDOWN ===== -->
+<section class="countdown-section" id="countdown-section">
+  <div class="countdown-wrap">
+    <p class="countdown-label">🎂 Төрсөн өдөр хүртэл</p>
+    <div class="countdown-boxes" id="countdownBoxes">
+      <div class="c-box"><span id="c-days">00</span><small>Өдөр</small></div>
+      <div class="c-sep">:</div>
+      <div class="c-box"><span id="c-hours">00</span><small>Цаг</small></div>
+      <div class="c-sep">:</div>
+      <div class="c-box"><span id="c-mins">00</span><small>Минут</small></div>
+      <div class="c-sep">:</div>
+      <div class="c-box"><span id="c-secs">00</span><small>Секунд</small></div>
+    </div>
+    <div class="birthday-message" id="birthdayMessage" style="display:none;">
+      🎉 Өнөөдөр чиний төрсөн өдөр! Баярлалаа дэлхий рүү ирсэнд! 🎉
+    </div>
+  </div>
+</section>
+
+<!-- ===== LETTER SECTION ===== -->
+<section class="letter-section" id="letter">
+  <div class="letter-container">
+    <div class="letter-deco top-deco">❝</div>
+    <div class="letter-header">
+      <span class="letter-from">Babi-гаас</span>
+      <span class="letter-to">Миний Гүнжид</span>
+    </div>
+    <div class="letter-body">
+      <p>Сайн байна уу хайрт минь, чамдаа энэ сайхан мөчийн мэндийг хүргэе.</p>
+      <p>Чи минь том ангай болж <strong>18н насны босгийг алхлаа шүүдэ</strong> — одоо бацаан биш боллоо шүүдээ вуааааааа 🥹</p>
+      <p>Ийм хоорхон сайхан хайрын минь төрүүлж өсгөсөн <em>аав ээжид нь баярлаад ханашгүй</em> шүүдээ.</p>
+      <p>Чи бол миний амьдрал туссан нар — бүх зүйл хэцүү байсан ч чамтай л байвал хорвоо дэлхий илүү сайхан.</p>
+      <p><strong>Бид 2-ийг маш олон сайхан жилүүд хүлээж байгаа шүү</strong> миний гүнж. Тэр болтол унаж босож, маргалдаан, санах гээд зөндөө саад байгаа ч — хамтдаа байгаа цагт бүх юм болно.</p>
+      <p>Миний сайхан хайр, <em>хичээл номоо сайн хийгээд, ЭЕШ-ээ сайхан өгөөд</em>, хүссэн сургууль, хүссэн мэргэжлээ сонгоод — амьдралын өөр нэг сайхан хуудас эхэлнэ.</p>
+      <p>Би ямар ч үед чамайг харайлсаар байх болно миний сайхан гүнж. <strong>Алдсан, оносон — дуртай зүйлийхээ төлөө хичээж аз жаргалтай амьдраарай.</strong></p>
+      <p>Чамайгаа зөндөө их санаж байгаа шүү 💕 Удахгүй уулзаад хамтдаа зөндөө эрхлэлднэ шүү.</p>
+    </div>
+    <div class="letter-footer">
+      <p class="letter-sign">Хайртай чамдаа 💌</p>
+      <p class="letter-from-name">— Babi-гаас нь</p>
+    </div>
+    <div class="letter-deco bottom-deco">❞</div>
+  </div>
+</section>
+
+<!-- ===== GALLERY SECTION ===== -->
+<section class="gallery-section" id="gallery">
+  <div class="section-header">
+    <h2 class="section-title">Бидний мөчүүд</h2>
+    <p class="section-sub">Дурсамжийн цомог 📷</p>
+  </div>
+
+  <div class="polaroid-grid">
+    <div class="polaroid" style="--r: -4deg; --delay: 0s">
+      <div class="polaroid-img-wrap">
+        <img src="IMG_20260525_165855_846.jpg" alt="Дурсамж 1" loading="lazy" />
+      </div>
+      <p class="polaroid-caption">Миний гүнж 💕</p>
+    </div>
+    <div class="polaroid" style="--r: 3deg; --delay: 0.1s">
+      <div class="polaroid-img-wrap">
+        <img src="IMG_20260528_121818_104.jpg" alt="Дурсамж 2" loading="lazy" />
+      </div>
+      <p class="polaroid-caption">Хамтдаа ✨</p>
+    </div>
+    <div class="polaroid" style="--r: -2deg; --delay: 0.2s">
+      <div class="polaroid-img-wrap">
+        <img src="IMG_20260528_232530_107.jpg" alt="Дурсамж 3" loading="lazy" />
+      </div>
+      <p class="polaroid-caption">Хайр дурлал 🌹</p>
+    </div>
+    <div class="polaroid" style="--r: 5deg; --delay: 0.3s">
+      <div class="polaroid-img-wrap">
+        <img src="IMG_20260528_232537_227.jpg" alt="Дурсамж 4" loading="lazy" />
+      </div>
+      <p class="polaroid-caption">Миний бүх зүйл 🫶</p>
+    </div>
+    <div class="polaroid" style="--r: -3deg; --delay: 0.4s">
+      <div class="polaroid-img-wrap">
+        <img src="IMG_20260528_232541_978.jpg" alt="Дурсамж 5" loading="lazy" />
+      </div>
+      <p class="polaroid-caption">Үүрд хамт 💫</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-prev" onclick="event.stopPropagation(); lbNav(-1)">‹</button>
+  <img id="lbImg" src="" alt="Зураг" />
+  <button class="lb-next" onclick="event.stopPropagation(); lbNav(1)">›</button>
+</div>
+
+<!-- ===== WISHES SECTION ===== -->
+<section class="wishes-section" id="wishes">
+  <div class="wishes-inner">
+    <div class="wish-card" style="--cd: 0s">
+      <div class="wish-icon">🌸</div>
+      <h3>Аз жаргал</h3>
+      <p>Амьдралын бүх замд аз жаргал дагалдаг байх болтугай</p>
+    </div>
+    <div class="wish-card" style="--cd: 0.15s">
+      <div class="wish-icon">⭐</div>
+      <h3>Амжилт</h3>
+      <p>ЭЕШ-ээ сайхан өгөөд хүссэн сургуульдаа орох болтугай</p>
+    </div>
+    <div class="wish-card" style="--cd: 0.3s">
+      <div class="wish-icon">💕</div>
+      <h3>Хайр</h3>
+      <p>Манай хайр дурлал улам гүнзгийрч үргэлжлэх болтугай</p>
+    </div>
+    <div class="wish-card" style="--cd: 0.45s">
+      <div class="wish-icon">🌙</div>
+      <h3>Эрүүл мэнд</h3>
+      <p>Эрүүл чийрэг сайхан байж цэцэглэн хөгжих болтугай</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-hearts">
+    <span>💕</span><span>🎂</span><span>💕</span>
+  </div>
+  <p class="footer-text">Хайртай чамдаа — Babi 💌</p>
+  <p class="footer-date">June 17, 2026 · 18th Birthday</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
