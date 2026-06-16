@@ -3,51 +3,43 @@
 ============================================= */
 
 // ── DOM refs ──────────────────────────────────
-const audio       = document.getElementById('bgMusic');
-const vinyl       = document.getElementById('vinylDisc');
-const waveEl      = document.getElementById('musicWave');
-const musicBar    = document.getElementById('musicBar');
+const audio    = document.getElementById('bgMusic');
+const vinyl    = document.getElementById('vinylDisc');
+const waveEl   = document.getElementById('musicWave');
+const overlay  = document.getElementById('enterOverlay');
 
-let isPlaying  = false;
-let lbImages   = [];
-let lbCurrent  = 0;
+let isPlaying = false;
+let lbImages  = [];
+let lbCurrent = 0;
 
 // ══════════════════════════════════════════════
-// 1. AUTO-PLAY on first user interaction
+// 1. ENTER SITE — overlay товч дарахад дуу эхэлнэ
 // ══════════════════════════════════════════════
-function startMusic() {
-  if (isPlaying) return;
-  audio.volume = 0.4;
-  audio.play()
-    .then(() => {
-      isPlaying = true;
-      vinyl.classList.add('playing');
-      waveEl.classList.add('active');
-    })
-    .catch(() => {});
+function enterSite() {
+  audio.volume = 0.45;
+  const playPromise = audio.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        isPlaying = true;
+        vinyl.classList.add('playing');
+        waveEl.classList.add('active');
+      })
+      .catch(() => {
+        // Хэрэв browser блоклосон ч overlay хаана
+      });
+  }
+
+  // Overlay-г сайхан хаана
+  overlay.classList.add('hidden');
+  setTimeout(() => { overlay.style.display = 'none'; }, 700);
+
+  // Петалуудыг идэвхжүүлнэ
+  spawnPetals();
 }
 
-// Try immediate autoplay
-window.addEventListener('load', () => {
-  audio.volume = 0.4;
-  audio.play()
-    .then(() => {
-      isPlaying = true;
-      vinyl.classList.add('playing');
-      waveEl.classList.add('active');
-    })
-    .catch(() => {
-      // Browser blocked; wait for first interaction
-      const events = ['click','touchstart','keydown','scroll'];
-      const handler = () => {
-        startMusic();
-        events.forEach(e => document.removeEventListener(e, handler));
-      };
-      events.forEach(e => document.addEventListener(e, handler, { once: false }));
-    });
-});
-
-// ── Toggle music button ───────────────────────
+// ── Toggle music bar дээр дарахад ───────────
 function toggleMusic() {
   if (isPlaying) {
     audio.pause();
@@ -59,7 +51,7 @@ function toggleMusic() {
       isPlaying = true;
       vinyl.classList.add('playing');
       waveEl.classList.add('active');
-    });
+    }).catch(() => {});
   }
 }
 
@@ -67,7 +59,8 @@ function toggleMusic() {
 // 2. COUNTDOWN to June 17, 2026
 // ══════════════════════════════════════════════
 function updateCountdown() {
-  const target = new Date('2026-06-17T00:00:00').getTime();
+  // Монгол цагийн бүс (UTC+8) ашиглана
+  const target = new Date('2026-06-17T00:00:00+08:00').getTime();
   const now    = Date.now();
   const diff   = target - now;
 
@@ -86,20 +79,22 @@ function updateCountdown() {
   const m = Math.floor((diff % 3600000)  / 60000);
   const s = Math.floor((diff % 60000)    / 1000);
 
-  document.getElementById('c-days').textContent  = String(d).padStart(2,'0');
-  document.getElementById('c-hours').textContent = String(h).padStart(2,'0');
-  document.getElementById('c-mins').textContent  = String(m).padStart(2,'0');
-  document.getElementById('c-secs').textContent  = String(s).padStart(2,'0');
+  document.getElementById('c-days').textContent  = String(d).padStart(2, '0');
+  document.getElementById('c-hours').textContent = String(h).padStart(2, '0');
+  document.getElementById('c-mins').textContent  = String(m).padStart(2, '0');
+  document.getElementById('c-secs').textContent  = String(s).padStart(2, '0');
 }
+
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
 // ══════════════════════════════════════════════
 // 3. FLOATING PETALS
 // ══════════════════════════════════════════════
-(function spawnPetals() {
+function spawnPetals() {
   const container = document.getElementById('petals');
-  const colors = ['#8b0000','#c0392b','#e8c4c4','#d4a96a','#f5ece0'];
+  if (!container) return;
+  const colors = ['#8b0000', '#c0392b', '#e8c4c4', '#d4a96a', '#f5ece0'];
 
   function makePetal() {
     const p = document.createElement('div');
@@ -111,7 +106,7 @@ setInterval(updateCountdown, 1000);
       height: ${size * 1.4}px;
       background: ${colors[Math.floor(Math.random() * colors.length)]};
       animation-duration: ${5 + Math.random() * 10}s;
-      animation-delay: ${Math.random() * 10}s;
+      animation-delay: ${Math.random() * 4}s;
       opacity: ${0.4 + Math.random() * 0.5};
       border-radius: ${Math.random() > .5 ? '0 100% 0 100%' : '100% 0 100% 0'};
     `;
@@ -119,15 +114,16 @@ setInterval(updateCountdown, 1000);
     setTimeout(() => p.remove(), 20000);
   }
 
-  setInterval(makePetal, 400);
-  for (let i = 0; i < 15; i++) makePetal();
-})();
+  // Эхний batch
+  for (let i = 0; i < 12; i++) makePetal();
+  setInterval(makePetal, 500);
+}
 
 // ══════════════════════════════════════════════
 // 4. GALLERY LIGHTBOX
 // ══════════════════════════════════════════════
-const lb     = document.getElementById('lightbox');
-const lbImg  = document.getElementById('lbImg');
+const lb    = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
 
 function openLightbox(index) {
   lbCurrent = index;
@@ -146,51 +142,60 @@ function lbNav(dir) {
   lbImg.src = lbImages[lbCurrent];
 }
 
-document.addEventListener('keydown', e => {
-  if (!lb.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft')  lbNav(-1);
-  if (e.key === 'ArrowRight') lbNav(1);
+// Swipe support for mobile lightbox
+let lbTouchStartX = 0;
+lb.addEventListener('touchstart', e => { lbTouchStartX = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - lbTouchStartX;
+  if (Math.abs(dx) > 50) {
+    e.stopPropagation();
+    lbNav(dx < 0 ? 1 : -1);
+  }
 });
 
-// Attach click to polaroids
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape')      closeLightbox();
+  if (e.key === 'ArrowLeft')   lbNav(-1);
+  if (e.key === 'ArrowRight')  lbNav(1);
+});
+
+// ══════════════════════════════════════════════
+// 5. INIT on DOMContentLoaded
+// ══════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
-  const polaroids = document.querySelectorAll('.polaroid');
-  polaroids.forEach((card, i) => {
+  // Attach polaroid click → lightbox
+  document.querySelectorAll('.polaroid').forEach((card, i) => {
     const img = card.querySelector('img');
     lbImages.push(img.src);
     card.addEventListener('click', () => openLightbox(i));
   });
-});
 
-// ══════════════════════════════════════════════
-// 5. SCROLL REVEAL (Intersection Observer)
-// ══════════════════════════════════════════════
-const revealEls = document.querySelectorAll(
-  '.polaroid, .wish-card, .letter-container, .c-box'
-);
+  // Scroll reveal
+  const revealEls = document.querySelectorAll(
+    '.polaroid, .wish-card, .letter-container, .c-box'
+  );
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.animationPlayState = 'running';
-      observer.unobserve(entry.target);
-    }
+  revealEls.forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
   });
-}, { threshold: 0.15 });
-
-revealEls.forEach(el => {
-  el.style.animationPlayState = 'paused';
-  observer.observe(el);
 });
 
 // ══════════════════════════════════════════════
-// 6. CONFETTI (birthday message fallback)
+// 6. CONFETTI (birthday day)
 // ══════════════════════════════════════════════
 function launchConfetti() {
-  const colors = ['#8b0000','#d4a96a','#e8c4c4','#fff8f0','#c0392b'];
-  const count  = 120;
-  for (let i = 0; i < count; i++) {
+  const colors = ['#8b0000', '#d4a96a', '#e8c4c4', '#fff8f0', '#c0392b'];
+  for (let i = 0; i < 120; i++) {
     const c = document.createElement('div');
     c.style.cssText = `
       position: fixed;
